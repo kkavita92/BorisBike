@@ -1,10 +1,9 @@
 require 'dockingstation'
-require 'bike'
 
 describe DockingStation do
   it { is_expected.to respond_to(:release_bike) }
 
-  it 'is of class of station' do
+  it 'should create an instance of the DockingStation class' do
     expect(subject).to be_instance_of DockingStation
   end
 
@@ -13,11 +12,16 @@ describe DockingStation do
     expect(bike).to be_working
   end
 
-    it { is_expected.to respond_to(:is_docked) }
+  it 'docks a bike' do
+    bike = Bike.new
+    expect(subject.dock(bike)).to eq bike
+  end
 
-    it 'docks a bike' do
-      bike = subject.is_docked
-      expect(bike).to be true
-    end
+  it 'returns docked bike' do
+    bike = Bike.new
+    subject.dock(bike) #needs to remember which bike is docked
+    expect(subject.bike).to eq bike #returns bike 
+  end
+
 
 end
