@@ -25,7 +25,7 @@ describe DockingStation do
     end
 
     it 'raises error if docking station at capacity' do
-      20.times { subject.dock Bike.new }
+      DockingStation::DEFAULT_CAPACITY.times { subject.dock Bike.new } #used to access constant 
       expect {subject.dock(Bike.new)}.to raise_error{"No spaces left"}
     end
   end
