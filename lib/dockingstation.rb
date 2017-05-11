@@ -6,6 +6,7 @@ class DockingStation
   def initialize
     @bikes = []
   end
+  
   def release_bike
     fail("No bikes left") if empty? #guard condition
     @bikes.pop
