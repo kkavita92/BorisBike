@@ -38,21 +38,25 @@ describe DockingStation do
     end
   end
 
+
+  #TESTS FOR CAPACITY
+    describe '#capacity' do
+      it 'allows a new docking station to be created with a variable capacity' do
+        expect(subject).to respond_to(:capacity)
+      end
+
+      it 'initiates with default capacity if no capacity is supplied' do
+        expect(subject.capacity).to eq DockingStation::DEFAULT_CAPACITY
+      end
+  end
+
+
   it 'returns docked bikes' do #CHECK IF CORRECT!!!!
     bike = Bike.new
     subject.dock(bike) #needs to remember which bike is docked
     expect(subject.bikes[-1]).to eq bike #returns bike
   end
 
-  # TEST FOR CAPACITY
-
-  it 'allows a new docking station to be created with a variable capacity' do
-    expect(subject).to respond_to(:capacity)
-  end
-
-  it 'initiates with default capacity if no capacity is supplied' do
-    expect(subject.capacity).to eq DockingStation::DEFAULT_CAPACITY
-  end
 
 
 end
