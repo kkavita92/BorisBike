@@ -36,6 +36,8 @@ describe DockingStation do
     expect(subject.bikes[-1]).to eq bike #returns bike
   end
 
+  # TEST FOR CAPACITY
+
   it 'allows a new docking station to be created with a variable capacity' do
     expect(subject).to respond_to(:capacity)
   end
