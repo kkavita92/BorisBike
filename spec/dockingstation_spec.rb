@@ -25,7 +25,7 @@ describe DockingStation do
     end
 
     it 'raises error if docking station at capacity' do
-      DockingStation::DEFAULT_CAPACITY.times { subject.dock Bike.new } #used to access constant 
+      DockingStation::DEFAULT_CAPACITY.times { subject.dock Bike.new } #used to access constant
       expect {subject.dock(Bike.new)}.to raise_error{"No spaces left"}
     end
   end
@@ -34,6 +34,14 @@ describe DockingStation do
     bike = Bike.new
     subject.dock(bike) #needs to remember which bike is docked
     expect(subject.bikes[-1]).to eq bike #returns bike
+  end
+
+  it 'allows a new docking station to be created with a variable capacity' do
+    expect(subject).to respond_to(:capacity)
+  end
+
+  it 'initiates with default capacity if no capacity is supplied' do
+    expect(subject.capacity).to eq DockingStation::DEFAULT_CAPACITY 
   end
 
 

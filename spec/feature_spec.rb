@@ -1,7 +1,6 @@
 require './lib/dockingstation'
 require './lib/bike'
 
-#docking_station = DockingStation.new
-#bike = Bike.new
-#docking_station(dock(bike))
-#docking_station.release_bike
+p docking_station = DockingStation.new(50)
+p docking_station = DockingStation.new
+bike = Bike.new
