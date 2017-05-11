@@ -15,6 +15,14 @@ describe DockingStation do
       subject.dock(bike)
       expect(bike).to be_working
     end
+
+    it 'does not release a damaged bike' do
+      bike = Bike.new
+      subject.dock(bike)
+      bike.report_broken
+      expect{subject.release_bike}.to raise_error{"No working bikes available"}
+    end
+
   end
 
 #TESTS FOR DOCK
@@ -43,7 +51,7 @@ describe DockingStation do
   end
 
   it 'initiates with default capacity if no capacity is supplied' do
-    expect(subject.capacity).to eq DockingStation::DEFAULT_CAPACITY 
+    expect(subject.capacity).to eq DockingStation::DEFAULT_CAPACITY
   end
 
 

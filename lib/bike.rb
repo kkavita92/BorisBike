@@ -9,7 +9,7 @@ class Bike
   end
 
   def broken?
-    @broken 
+    @broken
   end
 
 end
