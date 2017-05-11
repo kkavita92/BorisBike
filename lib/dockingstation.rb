@@ -2,26 +2,19 @@ require_relative 'bike'
 
 class DockingStation
 
-  attr_reader :bikes
-  attr_accessor  :capacity
+  attr_reader   :bikes
+  attr_accessor :capacity
 
   DEFAULT_CAPACITY = 20
 
-  def initialize(capacity=DEFAULT_CAPACITY)
+  def initialize(capacity = DEFAULT_CAPACITY)
     @bikes = []
     @capacity = capacity
   end
 
   def release_bike
     fail("No bikes left") if empty?
-    working_bikes = []
-    @bikes.each do |bike|
-      working_bikes << bike unless bike.broken?
-    end
-    fail("No working bikes available") if working_bikes.empty?
-    working_bike = working_bikes.pop
-    @bikes.delete(working_bike)
-    working_bike
+    fail("No working bikes available") unless release_working_bike
   end
 
   def dock(bike) #docks a bike instance
@@ -29,8 +22,15 @@ class DockingStation
     @bikes.push(bike) #saves docked bike into memory so we can see it later
   end
 
-
   private
+
+  def release_working_bike
+    @bikes.delete(working_bikes.first)
+  end
+
+  def working_bikes
+    @bikes.reject { |bike| bike.broken? }
+  end
 
   def full?
     @bikes.count >= capacity
